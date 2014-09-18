@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Script to return _private_ ip address on Windows
+ * Script to return server's _private_ ip address on Windows
  * Tested on Windows 7 SP1
  */
 
