@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * Build a CASE statement to help build some of my MySQL queries.
+ * I am using here a dictionary of replacements and preg_replace.
+ */
+
+
+
+
+$file = file('file.txt');
+$camp = "A15";
+
+$dictionary = 
+[
+    '/Buyers/i'                 => 'B',
+    '/Months?|Multi|Mobile/i'   => 'M',
+    '/\/|\<|\>|\=|\+|-|\s/'     => '',
+    '/and|or/i'                 => '',
+    '/Single/i'                 => 'S',
+    '/Enquirers|Email/i'        => 'E',
+    '/Hot/i'                    => 'H',
+    '/No/i'                     => 'N',
+    '/Quotes/i'                 => 'Q'
+
+];
+
+$patterns       = array_keys($dictionary);
+$replacements   = array_values($dictionary);
+
+echo "CASE dscr\n";
+foreach($file as $text)
+{
+    echo "\t". 'WHEN "' . trim($text) .  '" THEN "' . $camp .  preg_replace($patterns, $replacements, $text) . '"' . "\n";
+
+}
+echo 'END src';
